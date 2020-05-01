@@ -51,35 +51,33 @@
         //target by event.currentTarget as a more accurate way
            var card=$(event.currentTarget);
            var temp = card.attr('src');
-           console.log("temp "+ temp);
+
         card.attr('src',card.attr('data-alt-src'));
         card.attr('data-alt-src',temp);
+
         if(!cardHasFlipped){
             cardHasFlipped = true;
             firstCard = card;
-            console.log("firstCard "+firstCard);
         }
         else{
             cardHasFlipped = false;
             secondCard = card;
-            console.log("secondCard "+secondCard);
-
+            //this if/else needs to be inside, otherwise it will activate even if secondCard is not defined
             if(firstCard.attr('data-alt-src') === secondCard.attr('data-alt-src')){
+                //technically off() should be used with .click, not removeEventListener
                 firstCard.off();
                 secondCard.off();
-                // firstCard.removeEventListener('click', cardCheck);
-                // secondCard.removeEventListener('click', cardCheck);
             }
             else
             {
+                //not sure how you want to handle this part.
+                //I think you could just swap the cards back again,the opposite of what you did above.
                 firstCard.classList.remove('flip');
                 secondCard.classList.remove('flip');
             }
 
         }
-       // console.log(firstCard.attr("data-alt-src"));
 
-        
         // function shuffle(){
         //     cards.forEach(card=>{
         //         let randomPos = Math.floor(Math.random() * 12);
