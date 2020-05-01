@@ -45,7 +45,7 @@
         let cardHasFlipped = false;
         let firstCard, secondCard;
        
-       $('img').click(function(){
+        $('img').click(function(){
            var temp = $(this).attr('src');
         $(this).attr('src',$(this).attr('data-alt-src'));
         $(this).attr('data-alt-src',temp);
@@ -58,7 +58,7 @@
             cardHasFlipped = false;
             secondCard = this;
         }
-        if(firstCard.dataset.framework === secondCard.dataset.framework){
+        if(firstCard.attr('data-alt-src') === secondCard.attr('data-alt-src')){
             firstCard.removeEventListener('click', img);
             secondCard.removeEventListener('click', img);
             }
@@ -67,6 +67,14 @@
                 firstCard.classList.remove('flip');
                 secondCard.classList.remove('flip');
             }
+        // function shuffle(){
+        //     cards.forEach(card=>{
+        //         let randomPos = Math.floor(Math.random() * 12);
+        //         card.style.order = randomPos;
+
+        //     })
+
+        // }();
 
         });
 
