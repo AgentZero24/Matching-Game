@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Matching Game</h1>
+        <div class="col-8">
+            <img src='img/green_back.png' data-alt-src='img/2S.png'>
+            <img src='img/green_back.png' data-alt-src='img/3S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/4S.png'/>
+            <!-- <img src='img/green_back.png' data-alt-src='img/5S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/6S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/7S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/8S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/9S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/10S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/JS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/KS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/QS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/AS.png'/> -->
+            <img src='img/green_back.png' data-alt-src='img/2S.png'>
+            <img src='img/green_back.png' data-alt-src='img/3S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/4S.png'/>
+            <!-- <img src='img/green_back.png' data-alt-src='img/5S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/6S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/7S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/8S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/9S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/10S.png'/>
+            <img src='img/green_back.png' data-alt-src='img/JS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/KS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/QS.png'/>
+            <img src='img/green_back.png' data-alt-src='img/AS.png'/> -->
+        </div>
+        <button>Restore</button>
+    </div>
+    <script>
+        let cardHasFlipped = false;
+        let firstCard, secondCard;
+       
+       $('img').click(function(){
+           var temp = $(this).attr('src');
+        $(this).attr('src',$(this).attr('data-alt-src'));
+        $(this).attr('data-alt-src',temp);
+
+        if(!cardHasFlipped){
+            cardHasFlipped = true;
+            firstCard = this;
+        }
+        else{
+            cardHasFlipped = false;
+            secondCard = this;
+        }
+        if(firstCard.dataset.framework === secondCard.dataset.framework){
+            firstCard.removeEventListener('click', img);
+            secondCard.removeEventListener('click', img);
+            }
+        else
+            {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+            }
+
+        });
+
+        // if both data src's are the same keep cards up
+        //possibly try and make them dissapear
+        //
+      
+    </script>
+</body>
+</html> 
