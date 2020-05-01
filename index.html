@@ -45,28 +45,41 @@
         let cardHasFlipped = false;
         let firstCard, secondCard;
        
-        $('img').click(function(){
-           var temp = $(this).attr('src');
-        $(this).attr('src',$(this).attr('data-alt-src'));
-        $(this).attr('data-alt-src',temp);
-
+        $('img').click(cardCheck);
+            
+        function cardCheck(){  
+        //target by event.currentTarget as a more accurate way
+           var card=$(event.currentTarget);
+           var temp = card.attr('src');
+           console.log("temp "+ temp);
+        card.attr('src',card.attr('data-alt-src'));
+        card.attr('data-alt-src',temp);
         if(!cardHasFlipped){
             cardHasFlipped = true;
-            firstCard = this;
+            firstCard = card;
+            console.log("firstCard "+firstCard);
         }
         else{
             cardHasFlipped = false;
-            secondCard = this;
-        }
-        if(firstCard.attr('data-alt-src') === secondCard.attr('data-alt-src')){
-            firstCard.removeEventListener('click', img);
-            secondCard.removeEventListener('click', img);
+            secondCard = card;
+            console.log("secondCard "+secondCard);
+
+            if(firstCard.attr('data-alt-src') === secondCard.attr('data-alt-src')){
+                firstCard.off();
+                secondCard.off();
+                // firstCard.removeEventListener('click', cardCheck);
+                // secondCard.removeEventListener('click', cardCheck);
             }
-        else
+            else
             {
                 firstCard.classList.remove('flip');
                 secondCard.classList.remove('flip');
             }
+
+        }
+       // console.log(firstCard.attr("data-alt-src"));
+
+        
         // function shuffle(){
         //     cards.forEach(card=>{
         //         let randomPos = Math.floor(Math.random() * 12);
@@ -76,7 +89,7 @@
 
         // }();
 
-        });
+        };
 
         // if both data src's are the same keep cards up
         //possibly try and make them dissapear
